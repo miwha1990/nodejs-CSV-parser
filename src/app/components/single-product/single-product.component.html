@@ -10,19 +10,15 @@
                 <li>
                     <span>
                         <span class="counter">
-                            <strong>{{singleProduct?.id}}</strong> of <strong>{{singleProduct?.total}}</strong>
+                            <strong>{{singleProduct?.id+1}}</strong> of <strong>{{singleProduct?.total}}</strong>
                         </span>
                         <span>
                             <div class="btn-group" role="group" aria-label="">
-                                <button type="button" class="btn btn-defaul {{singleProduct?.id == 0 ? 'disabled' : ''}}" (click)="prevProduct(productIndex)">
-                                   <a>
-                                       <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-                                   </a>
+                                <button type="button" class="btn btn-defaul" disabled="{{singleProduct?.id == 0 ? 'disabled' : ''}}" (click)="prevProduct(productIndex)">
+                                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
                                 </button>
-                                <button type="button" class="btn btn-default {{singleProduct?.id == singleProduct?.total ? 'disabled' : ''}}" (click)="nextProduct(productIndex)">
-                                    <a>
-                                       <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-                                    </a>
+                                <button type="button" class="btn btn-default" disabled="{{singleProduct?.id + 1 == singleProduct?.total ? 'disabled' : ''}}" (click)="nextProduct(productIndex)">
+                                    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
                                 </button>
                             </div>
                         </span>
@@ -40,9 +36,14 @@
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 
                         <!-- Wrapper for slides -->
-                        <div class="carousel-inner" role="listbox" *ngFor="let photo of singleProduct?.photos; let i = index">
+<!--                        <div class="carousel-inner" role="listbox" *ngFor="let photo of singleProduct?.photos; let i = index">
                             <div *ngIf="singleProduct?.photos.length" class="item {{i == 0 ? 'active' : ''}}">
                                 <img src="{{photo.url}}" alt="{{photo.title}}">
+                            </div>
+                        </div>-->
+                        <div class="carousel-inner" role="listbox">
+                            <div *ngIf="singleProduct?.photos.length" class="item active">
+                                <img src="http://placehold.it/1000x650" alt="">
                             </div>
                         </div>
 
@@ -69,16 +70,16 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <ul class="list-group">
-                                    <li class="list-group-item"><span>Type</span> {{singleProduct?.sub_category}}</li>
-                                    <li class="list-group-item"><span>Surface</span> {{singleProduct?.habitable}} m2</li>
-                                    <li class="list-group-item"><span>Bedrooms</span> {{singleProduct?.bedrooms}}</li>
+                                    <li class="list-group-item"><span>Type</span> <strong>{{singleProduct?.sub_category}}</strong></li>
+                                    <li class="list-group-item"><span>Surface</span> <strong>{{singleProduct?.habitable}} m2</strong></li>
+                                    <li class="list-group-item"><span>Bedrooms</span> <strong>{{singleProduct?.bedrooms}}</strong></li>
                                 </ul>
                             </div>
                             <div class="col-sm-6">
                                 <ul class="list-group">
-                                    <li class="list-group-item"><span>Price</span> {{singleProduct?.price}} CHF</li>
-                                    <li class="list-group-item"><span>Price/sqm</span> {{singleProduct?.price / singleProduct?.habitable}}</li>
-                                    <li class="list-group-item"><span>Bathrooms</span>{{singleProduct?.bathrooms ? singleProduct?.bathrooms : 0}}</li>
+                                    <li class="list-group-item"><span>Price</span> <strong>{{singleProduct?.price}} CHF</strong></li>
+                                    <li class="list-group-item"><span>Price/sqm</span> <strong>{{singleProduct?.price_per_sqm}}</strong></li>
+                                    <li class="list-group-item"><span>Bathrooms</span> <strong>{{singleProduct?.bathrooms ? singleProduct?.bathrooms : 0}}</strong></li>
                                 </ul>
                             </div>
                         </div>
@@ -110,7 +111,7 @@
                         <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span></button>
                     </div>
                     <div class="share-block">
-                        <p>SHARE WITH A FRIEND</p>
+                        <span>SHARE WITH A FRIEND</span>
                         <div class="btn-group" role="group" aria-label="">
                             <button type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
@@ -130,12 +131,29 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
+                    <hr>
+                    <h4>Neighborhoods</h4>
                     <iframe
                             width="600"
                             height="450"
                             frameborder="0" style="border:0"
                             src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDNyL3Vz7TjVkCqqJh0m2ShHn8B6iJIJwI&q=Space+Needle,Seattle+WA" allowfullscreen>
                     </iframe>
+                    <p class="listing">
+                        <a  routerLink="/home/0" routerLinkActive="active" class="btn btn-default"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+                        <span>
+                            <div class="btn-group" role="group" aria-label="">
+                                <button type="button" class="btn btn-defaul" disabled="{{singleProduct?.id == 0 ? 'disabled' : ''}}" (click)="prevProduct(productIndex)">
+                                    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-default" disabled="{{singleProduct?.id + 1 == singleProduct?.total ? 'disabled' : ''}}" (click)="nextProduct(productIndex)">
+                                    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </span>
+                        <span style="clear:both;"></span>
+                    </p>
+                    <hr>
                 </div>
             </div>
         </div>

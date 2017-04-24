@@ -39,6 +39,9 @@ export class SingleProductComponent implements OnInit {
 
     getSingleProduct(index: number) {
         this.singleProduct = this.productsData[index];
+        this.singleProduct['id'] = index;
+        this.singleProduct['total'] = Object.keys(this.productsData).length;
+        this.singleProduct['price_per_sqm'] = Math.floor((this.singleProduct['price'] / this.singleProduct['habitable']) * 100) / 100;
     }
 
 
@@ -56,6 +59,4 @@ export class SingleProductComponent implements OnInit {
             this.getSingleProduct(this.productIndex);
         }
     }
-
-    
 }
