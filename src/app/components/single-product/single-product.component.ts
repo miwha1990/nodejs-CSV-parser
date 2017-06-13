@@ -31,7 +31,6 @@ export class SingleProductComponent implements OnInit {
                 err => console.error('Error', err),
                 () => {
                     this.getSingleProduct(this.productIndex);
-                    console.info(this.productsData);
                 }
             );
     }
