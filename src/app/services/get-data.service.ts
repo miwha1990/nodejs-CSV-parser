@@ -7,9 +7,14 @@ import 'rxjs/Rx';
 export class DataService {
     constructor(private http: Http) {}
 
-    getData():Observable<any> {
+    getData(): Observable<any> {
         return this.http.get('../../assets/data/properties.json')
             .map((res: Response) => res.json())
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
+    get4Similar(): Observable<any> {
+        return this.http.get('../../assets/data/properties.json')
+            .map((res: Response) => res.json().slice(1, 5))
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
 }

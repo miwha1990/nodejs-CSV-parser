@@ -35,28 +35,11 @@
             <div class="row">
                 <div class="col-sm-8">
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-
-                        <!-- Wrapper for slides -->
-<!--                        <div class="carousel-inner" role="listbox" *ngFor="let photo of singleProduct?.photos; let i = index">
-                            <div *ngIf="singleProduct?.photos.length" class="item {{i == 0 ? 'active' : ''}}">
+                        <carousel [interval]="9999999">
+                            <slide *ngFor="let photo of singleProduct?.photos; let i = index">
                                 <img src="{{photo.url}}" alt="{{photo.title}}">
-                            </div>
-                        </div>-->
-                        <div class="carousel-inner" role="listbox">
-                            <div *ngIf="singleProduct?.photos.length" class="item active">
-                                <img src="http://placehold.it/1000x650" alt="">
-                            </div>
-                        </div>
-
-                        <!-- Controls -->
-                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
+                            </slide>
+                        </carousel>
                     </div>
 
                     <h1>{{singleProduct?.title}}</h1>
@@ -133,12 +116,24 @@
             <div class="row">
                 <div class="col-sm-12">
                     <hr>
+                    <h4><strong>More photos</strong></h4>
+                    <div class="more-photos">
+                        <div class="more-one {{i>1?'small':'big'}}" *ngFor="let photo of singleProduct?.photos; let i = index">
+                            <img src="{{photo.url}}" alt="{{photo.title}}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <hr>
                     <h4><strong>Neighborhoods</strong></h4>
                     <iframe
                             width="600"
                             height="450"
                             frameborder="0" style="border:0"
-                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDNyL3Vz7TjVkCqqJh0m2ShHn8B6iJIJwI&q=Space+Needle,Seattle+WA" allowfullscreen>
+                            [src]="this.sanitizer.bypassSecurityTrustResourceUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyDNyL3Vz7TjVkCqqJh0m2ShHn8B6iJIJwI&q=' + singleProduct?.location)"
+                            allowfullscreen>
                     </iframe>
                     <p class="listing">
                         <a  routerLink="/home/0" routerLinkActive="active" class="btn btn-default"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
@@ -157,7 +152,14 @@
                     <hr>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <h4 class="text-center"><strong>Similar listing in the nearby area</strong></h4>
+                    <div class="row">
+                        <app-similar-items></app-similar-items>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </main>
-

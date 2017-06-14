@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import {DomSanitizer} from '@angular/platform-browser';
 import { DataService } from '../../services/get-data.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class SingleProductComponent implements OnInit {
     productsData;
 
 
-    constructor(private _dataService: DataService, private route: ActivatedRoute) {
+    constructor(private _dataService: DataService, private route: ActivatedRoute, private sanitizer: DomSanitizer) {
         this.productIndex = 0;
     }
 

@@ -1,10 +1,20 @@
-# TestProject
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
+
+# PreDependencies
+
+For installation you should have angular cli installed globally and Node.Js v.4 and higher
+
+-<b> sudo apt-get install nodejs
+
+-<b> sudo apt-get install npm
+
+-<b> npm install -g @angular/cli
 
 ## Dependencies
 
-For install all dependencies open a terminal in the directory with the project and run the command `npm install`
+For install all dependencies open a terminal in the directory with the project and run the command 
+
+`npm install`
 
 ## Development server
 
@@ -17,7 +27,3 @@ Run `ng generate component component-name` to generate a new component. You can 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
